@@ -7,18 +7,17 @@ import java.util.ArrayList;
 public class MazeSolver {
     public MazeSolver(){}
 
-
-
     public static void printList(ArrayList<Integer[]> b){
-        for (Integer[] list : b){
+        for (int coords = 0; coords < b.size() - 1; coords++){
             String[] coordString = new String[2];
             int idx = 0;
-            for (int i : list){
-                coordString[idx] = "" + i;
+            for (int i = 0; i < b.get(coords).length; i++){
+                coordString[idx] = "" + b.get(coords)[i];
                 idx++;
             }
             System.out.print("(" + coordString[0] + ", " + coordString[1] + ")-->");
         }
+        System.out.println("(" + b.getLast()[0] + ", " + b.getLast()[1] + ")");
     }
 
     // gets the "path" of the maze
@@ -57,7 +56,6 @@ public class MazeSolver {
     // checking to the right at the start doesn't work as (0,0) doesn't count as an adjacent space for some reason
     public ArrayList<Integer[]> solve(String[][] maze){
         ArrayList<Integer[]> path = getPath(maze);
-
         int endCount = 1;
         while (endCount > 0){
             endCount = 0;
